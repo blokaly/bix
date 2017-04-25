@@ -1,0 +1,57 @@
+{
+  "name": "bix",
+  "version": "1.0.0",
+  "description": "Blokaly Infomation Exchange",
+  "main": "./dist/main.js",
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "start": "node ./dist/main.js",
+    "clean": "rm -r dist",
+    "bix": "npm run build && npm run start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blokaly/bix.git"
+  },
+  "keywords": [
+    "Blokaly",
+    "BIX",
+    "IPFS",
+    "Ethereum"
+  ],
+  "author": "Blokaly",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/blokaly/bix/issues"
+  },
+  "homepage": "https://github.com/blokaly/bix#readme",
+  "dependencies": {
+    "asciify": "^1.3.5",
+    "base64url": "^2.0.0",
+    "bip39": "^2.2.0",
+    "bluebird": "^3.4.7",
+    "bn.js": "^4.11.6",
+    "bs58": "^4.0.0",
+    "ecdsa-sig-formatter": "^1.0.9",
+    "elliptic": "^6.4.0",
+    "eth-lightwallet": "^2.5.3",
+    "ethereumjs-util": "^5.1.1",
+    "file-type": "^4.1.0",
+    "ipfs-api": "^12.1.7",
+    "meteor-random": "0.0.3",
+    "moment": "^2.17.1",
+    "multihashes": "^0.4.3",
+    "secp256k1": "^3.2.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "6.3.2",
+    "babel-plugin-syntax-async-functions": "6.13.0",
+    "babel-plugin-transform-regenerator": "6.22.0",
+    "babel-polyfill": "6.23.0",
+    "babel-preset-es2015": "6.22.0",
+    "babel-preset-stage-0": "6.22.0"
+  }
+}
