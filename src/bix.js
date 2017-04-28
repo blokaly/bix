@@ -9,16 +9,15 @@ const rl = readline.createInterface({
 });
 
 
-
 const usage = (rl) => {
    console.log("Chose one option:");
+   console.log("  0. upload an image");
    console.log("  1. create an account");
    console.log("  2. create an issuer");
    console.log("  3. create a badge");
    console.log("  4. issue a badge");
-   console.log("  5. view badge info");
-   console.log("  6. upload an image");
-   console.log("  0. quit");
+   console.log("  5. display bao");
+   console.log("  q. quit");
    rl.prompt();
 };
 
@@ -31,16 +30,18 @@ const runStep = (coroutine, rl) => {
    });
 };
 
-asciify('BIX', {font:'colossal'}, (err, res) => {
+asciify('BIX', {font: 'colossal'}, (err, res) => {
    console.log();
-   console.log(res);
+   console.log(res.red);
    usage(rl);
 });
 
 
-
 rl.on('line', (line) => {
    switch (line.trim()) {
+      case '0':
+         runStep(Steps.UploadImgCo(rl), rl);
+         break;
       case '1':
          runStep(Steps.CreateAccountCo(rl), rl);
          break;
@@ -54,12 +55,9 @@ rl.on('line', (line) => {
          runStep(Steps.IssueBadgeCo(rl), rl);
          break;
       case '5':
-         runStep(Steps.ViewBadgeCo(rl), rl);
+         runStep(Steps.DisplayBaoCo(rl), rl);
          break;
-      case '6':
-         runStep(Steps.UploadImgCo(rl), rl);
-         break;
-      case '0':
+      case 'q':
          rl.close();
          break;
       default:
@@ -69,7 +67,6 @@ rl.on('line', (line) => {
 });
 
 rl.on('close', () => {
-   console.log('Have a great day!');
    process.exit(0);
 });
 

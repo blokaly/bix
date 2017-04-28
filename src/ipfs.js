@@ -1,10 +1,11 @@
 import fs from "fs";
 import ipfsAPI from "ipfs-api";
 import Bluebird from "bluebird";
+import {console, jsonConsole} from './logger';
 
-let ipfs = ipfsAPI('localhost', '5001', {protocol: 'http'});
+const ipfs = ipfsAPI('localhost', '5001', {protocol: 'http'});
 
-let StreamToValue = Bluebird.promisify((stream, cb) => {
+const StreamToValue = Bluebird.promisify((stream, cb) => {
    let str = '';
 
    stream.on('data', function (data) {
@@ -20,19 +21,17 @@ let StreamToValue = Bluebird.promisify((stream, cb) => {
 
 export const IpfsAddJson = Bluebird.coroutine(function*(json) {
    let jsonStr = JSON.stringify(json, undefined, 3);
-   console.log(jsonStr);
+   PrintJson(jsonStr);
    return yield IpfsAddText(jsonStr);
 });
 
 export const IpfsGetJson = Bluebird.coroutine(function*(hash) {
-   console.log("Getting json from ipfs: ", hash);
    let stream = yield ipfs.files.cat(hash);
    let jsonStr = yield StreamToValue(stream);
    return JSON.parse(jsonStr);
 });
 
 export const IpfsAddText = Bluebird.coroutine(function*(text) {
-   console.log("Adding text to ipfs: ", text);
    let res = yield ipfs.util.addFromStream(Buffer.from(text));
    return res[0].hash;
 });
@@ -42,3 +41,9 @@ export const IpfsAddImg = Bluebird.coroutine(function*(imgPath) {
    let res = yield ipfs.util.addFromStream(imgFile);
    return res[0].hash;
 });
+
+export const PrintJson = (json) => {
+   console.info();
+   jsonConsole.info(json);
+   console.info();
+};

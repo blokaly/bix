@@ -21,7 +21,7 @@ export const MakeBadge = (name, description, imgId, issuerId) => {
    return badge;
 };
 
-export const IssueBadge = (badgeId, badge, opt, account) => {
+export const IssueBadge = (badgeHash, badge, opt, account) => {
    let bao = {};
    bao["type"] = 'bloka.ly/bix/bao/v1';
    bao["assetType"] = opt.type;
@@ -32,10 +32,10 @@ export const IssueBadge = (badgeId, badge, opt, account) => {
       encoded = encodeRecipient('group', badge.name);
    }
 
-   let sig = signBadge(account, encoded.digest, badgeId);
+   let sig = signBadge(account, encoded.digest, badgeHash);
    bao["id"] = sig.hash;
    bao["recipient"] = encoded.recipient;
-   bao["asset"] = IPFS_PREFIX + badgeId;
+   bao["asset"] = IPFS_PREFIX + badgeHash;
    bao["verification"] = sig.signature;
    bao["issuedOn"] = moment().toISOString();
 
@@ -71,7 +71,7 @@ const encodeRecipient = (type, text) => {
    let encoded = SHA256(text);
    recipient.type = type;
    recipient.hashed = true;
-   recipient.salt = encoded.salt;
    recipient.identity = encoded.hash;
+   recipient.salt = encoded.salt;
    return {recipient:recipient, digest:encoded.digest};
 };
