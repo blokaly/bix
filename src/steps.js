@@ -1,7 +1,7 @@
 import {IpfsAddImg, IpfsAddJson, IpfsGetJson, PrintJson} from "./ipfs";
 import Account from "./account";
 import Bluebird from "bluebird";
-import {DecodeVerification, ExtractIpfsHash, IPFS_PREFIX} from "./util";
+import {DecodeVerification, ExtractIpfsHash, IPFS_PREFIX, LOCAL_IPFS} from "./util";
 import {IssueBadge, MakeBadge, MakeIssuer} from "./badge";
 import {console, colorConsole} from "./logger";
 import readline from "readline";
@@ -63,6 +63,7 @@ export const CreateIssuerCo = (rl) => {
       let issuer = MakeIssuer(opt.name, account.address);
       let hash = yield IpfsAddJson(issuer);
       colorConsole.info("Issuer IPFS hash: '%s'", hash);
+      colorConsole.info("View: " + LOCAL_IPFS + hash);
       console.info();
    });
 };
@@ -77,6 +78,7 @@ export const CreateBadgeCo = (rl) => {
       let badge = MakeBadge(name, description, imgId, issuerId);
       let hash = yield IpfsAddJson(badge);
       colorConsole.info("Badge IPFS hash: '%s'", hash);
+      colorConsole.info("View: " + LOCAL_IPFS + hash);
       console.info();
    });
 };
@@ -88,7 +90,9 @@ export const IssueBadgeCo = (rl) => {
       while (typeChoice < 1 || typeChoice > 2) {
          let typeStr = yield questionPromise(rl, "Chose Badge Type:\n   1) Individual\n   2) Group\n>");
          typeChoice = parseInt(typeStr.trim());
+         console.info();
          colorConsole.info('your choice: ', typeChoice);
+         console.info();
       }
 
       let opt = {};
@@ -107,6 +111,8 @@ export const IssueBadgeCo = (rl) => {
       let assert = IssueBadge(badgeHash, badge, opt, account);
       let hash = yield IpfsAddJson(assert);
       colorConsole.info("BAO IPFS hash: '%s'", hash);
+      colorConsole.info("View locally: " + LOCAL_IPFS + hash);
+      colorConsole.info("View on Blokaly: https://www.blokaly.com/bao/" + hash);
       console.info();
    });
 };
@@ -128,8 +134,11 @@ export const DisplayBaoCo = (rl) => {
 
 export const UploadImgCo = (rl) => {
    return Bluebird.coroutine(function*() {
-      let imgPath = yield questionPromise(rl, 'img path> ');
+      let imgPath = yield questionPromise(rl, 'PNG file> ');
       let hash = yield IpfsAddImg(imgPath);
-      console.log("image ipfs hash: '%s'", hash);
+      console.info();
+      colorConsole.info("Image IPFS hash: '%s'", hash);
+      colorConsole.info("View: " + LOCAL_IPFS + hash);
+      console.info();
    });
 };

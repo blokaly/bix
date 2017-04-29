@@ -16,7 +16,7 @@ const usage = (rl) => {
    console.log("  2. create an issuer");
    console.log("  3. create a badge");
    console.log("  4. issue a badge");
-   console.log("  5. display bao");
+   console.log("  5. display a bao");
    console.log("  q. quit");
    rl.prompt();
 };

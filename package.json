@@ -5,8 +5,9 @@
   "main": "./dist/bix.js",
   "scripts": {
     "build": "babel src --out-dir dist",
-    "bix": "node ./dist/bix.js",
     "clean": "rm -r dist",
+    "install": "npm run clean && npm run build",
+    "bix": "node ./dist/bix.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +18,8 @@
     "Blokaly",
     "BIX",
     "IPFS",
-    "Ethereum"
+    "Ethereum",
+    "DLT"
   ],
   "author": "Blokaly",
   "license": "LGPL-3.0",
@@ -37,7 +39,6 @@
     "elliptic": "^6.4.0",
     "eth-lightwallet": "^2.5.3",
     "ethereumjs-util": "^5.1.1",
-    "file-type": "^4.1.0",
     "ipfs-api": "^12.1.7",
     "meteor-random": "0.0.3",
     "moment": "^2.17.1",

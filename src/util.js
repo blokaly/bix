@@ -8,6 +8,7 @@ import base64url from "base64url";
 const signing = lightwallet.signing;
 const charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+,-./:;<=>?@[\\]^_`{|}~";
 
+export const LOCAL_IPFS = 'http://localhost:8080/ipfs/';
 export const IPFS_PREFIX = 'ipfs://';
 
 const randomTextFrom = (longStr, length) => {
