@@ -75,7 +75,8 @@ export const SignHash = (ks, key, address, hash) => {
    let signed = signing.signMsgHash(ks, key, hash, AddHex(address));
    let sig = new Signature(signed);
    let secret = sigFormatter.derToJose(new Buffer(sig.toDER('secp256k1')), 'ES256');
-   let payload = base64url.encode(JSON.stringify({hash: hash, v: signed.v - 27}));
+   let jsonPayload = JSON.stringify({hash: hash, v: signed.v - 27});
+   let payload = base64url.encode(jsonPayload);
    let token = [];
    token.push(payload);
    token.push(secret);

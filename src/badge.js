@@ -1,4 +1,4 @@
-import {IPFS_PREFIX, Random256Hash, RandomHexId, SHA256, SHA256WithSalt, SignHash} from "./util";
+import {IPFS_PREFIX, Random256Hash, SHA256, SignHash} from "./util";
 import moment from "moment";
 import bs58 from "bs58";
 import multihash from "multihashes";
@@ -37,23 +37,6 @@ export const IssueBadge = (badgeHash, badge, opt, account) => {
    bao["recipient"] = encoded.recipient;
    bao["asset"] = IPFS_PREFIX + badgeHash;
    bao["verification"] = sig.signature;
-   bao["issuedOn"] = moment().toISOString();
-
-   return bao;
-};
-
-export const CloneBadge = (masterHash, master, passcode, name) => {
-   let bao = {};
-   bao["type"] = 'bloka.ly/bix/bao/v1';
-   bao["assetType"] = 'cloned';
-   bao["id"] = RandomHexId(32);
-   let recipient = {};
-   recipient.type = 'public';
-   recipient.hashed = false;
-   recipient.identity = name;
-   bao["recipient"] = recipient;
-   bao["asset"] = IPFS_PREFIX + masterHash;
-   bao["verification"] = SHA256WithSalt(passcode, name).hash;
    bao["issuedOn"] = moment().toISOString();
 
    return bao;
