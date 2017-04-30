@@ -24,8 +24,8 @@ BIX is an information exchange protocol used by [Blokaly](https://www.blokaly.co
 
 Want to learn more? Check out the technical details [here](https://blokaly.readthedocs.io/en/latest/). 
 
-If you are interested in this project, join us on [Slack](https://blokalyscope.slack.com) <img src="./images/slack.png" alt="https://blokalyscope.slack.com" style="hight: 15px; width: 15px;"/> 
-or follow us on [Twitter](https://twitter.com/blokaly) <img src="./images/twitter.png" alt="https://twitter.com/blokaly" style="hight: 15px; width: 15px;"/> 
+If you are interested in this project, join us on [Slack](https://blokalyscope.slack.com) 
+or follow us on [Twitter](https://twitter.com/blokaly). 
 
 Please following this [link](https://www.blokaly.com/bao/QmQyyW1YaPz4N4ggnrSKuFwesbXNtgBLcBEB2BeXhMBvhF) to register as 
 a member of the Blokaly Community, then you will receive a Slack invite after confirming your email address.
